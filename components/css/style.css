@@ -1,0 +1,136 @@
+/* Variables de color minimalistas */
+:root {
+    --bg-main: #f4f5f7;
+    --bg-column: #ebecf0;
+    --text-color: #172b4d;
+    --border-radius: 8px;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0;
+}
+.navbar-brand {
+    color: #4a5568 !important;
+    font-weight: 700;
+}
+.navbar-brand i {
+    color: #3182ce;
+    margin-right: 5px;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    border: none;
+    border-radius: var(--border-radius);
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin-bottom: 15px;
+    border-left: 4px solid #3182ce;
+}
+.dashboard-card h5 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #718096;
+    margin-bottom: 5px;
+}
+.dashboard-card h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Columnas Kanban */
+.kanban-column {
+    background-color: var(--bg-column);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    min-height: 70vh;
+    margin-bottom: 20px;
+}
+.kanban-column h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #4a5568;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Tarjetas de Tarea */
+.tarea-card {
+    border: none !important;
+    border-radius: 6px;
+    background: #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tarea-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
+}
+.tarea-card h5 {
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+.tarea-card p {
+    font-size: 0.85rem;
+    color: #6b7280;
+    line-height: 1.4;
+}
+.badge {
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Separadores blandos */
+hr {
+    border-top: 1px solid #edf2f7;
+    margin: 10px 0;
+}
+
+/* Altura máxima para permitir 3 tarjetas aproximadamente y activar scroll */
+.kanban-column > div[id$="Container"] {
+    max-height: 520px; 
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Ocultar barra de scroll tosca pero mantener funcionalidad */
+.kanban-column > div[id$="Container"]::-webkit-scrollbar {
+    width: 6px;
+}
+.kanban-column > div[id$="Container"]::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 3px;
+}
+
+/* Estilo para los hashtags de la tarjeta */
+.badge-tag {
+    background-color: #e2e8f0;
+    color: #4a5568;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 4px;
+    border-radius: 4px;
+    padding: 2px 6px;
+    display: inline-block;
+}
+
+/* Alerta interna de dependencia */
+.alert-dependencia {
+    background-color: #fffaf0;
+    border-left: 3px solid #dd6b20;
+    color: #dd6b20;
+    font-size: 0.8rem;
+    padding: 8px;
+    border-radius: 4px;
+}
