@@ -134,3 +134,8 @@ hr {
     padding: 8px;
     border-radius: 4px;
 }
+
+#listaHistorial {
+    max-height: 245px; /* Altura máxima aproximada para 5 filas */
+    overflow-y: auto;  /* Activa el scroll vertical si se supera el max-height */
+}

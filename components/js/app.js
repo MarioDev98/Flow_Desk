@@ -11,7 +11,9 @@ $(document).ready(function () {
         if ($(this).val() === "Dependencia") {
             $("#contenedorComentarioDependencia").removeClass("d-none");
         } else {
-            $("#contenedorComentarioDependencia").addClass("d-none").val("");
+            // CORRECCIÓN: Ocultamos el div y reseteamos el TEXTAREA real
+            $("#contenedorComentarioDependencia").addClass("d-none");
+            $("#comentarioDependencia").val("");
         }
     });
 
@@ -161,6 +163,9 @@ function crearTarjeta(tarea) {
 }
 
 function abrirModalMover(id, estatusActual) {
+    // NUEVO: Limpiamos por completo el campo de comentarios de dependencia al abrir el modal
+    $("#comentarioDependencia").val(""); 
+    
     $("#moverIdTarea").val(id);
     $("#nuevoEstatus").val(estatusActual).change();
     $("#modalMover").modal("show");
@@ -183,6 +188,8 @@ function ejecutarMovimiento() {
         success: function(res) {
             if (res.success) {
                 $("#modalMover").modal("hide");
+                // NUEVO: Reseteamos tras el guardado exitoso
+                $("#comentarioDependencia").val("");
                 cargarTareas();
             } else { alert(res.mensaje); }
         }
@@ -225,14 +232,39 @@ function verHistorial(idTarea) {
         $("#listaHistorial").html("");
         if(logs.length === 0) {
             $("#listaHistorial").append("<li class='list-group-item text-muted'>Sin registros aún.</li>");
+            return;
         }
-        logs.forEach(log => {
+
+        for (let i = 0; i < logs.length; i++) {
+            let log = logs[i];
+            let fechaActual = log.fecha_registro || log.fecha;
+            let mostrarAccion = log.accion;
+
+            // Detectamos si es una acción de "Dependencia" y si el siguiente elemento es su comentario asociado (misma fecha)
+            if (
+                log.tipo === 'historial' && 
+                log.accion.toLowerCase().includes('dependencia') && 
+                i + 1 < logs.length
+            ) {
+                let siguienteLog = logs[i + 1];
+                let siguienteFecha = siguienteLog.fecha_registro || siguienteLog.fecha;
+
+                if (siguienteLog.tipo === 'comentario' && siguienteFecha === fechaActual) {
+                    // Los unimos en una sola línea elegante
+                    mostrarAccion = `${log.accion} <strong class="text-danger">💬 Comentario:</strong> <span class="text-dark">${siguienteLog.accion}</span>`;
+                    i++; // Saltamos el siguiente índice para no duplicar el comentario abajo
+                }
+            } else if (log.tipo === 'comentario') {
+                // Si es un comentario huérfano (no asociado a un cambio de estado en el mismo segundo), lo mostramos normal
+                mostrarAccion = `💬 Comentario: ${log.accion}`;
+            }
+
             $("#listaHistorial").append(`
                 <li class="list-group-item small">
-                    <span class="text-secondary">[${log.fecha_registro || log.fecha}]</span> ${log.accion}
+                    <span class="text-secondary">[${fechaActual}]</span> ${mostrarAccion}
                 </li>
             `);
-        });
+        }
     }).fail(function() {
         $("#listaHistorial").html("<li class='list-group-item text-danger'>Error al conectar con el servidor de logs.</li>");
     });

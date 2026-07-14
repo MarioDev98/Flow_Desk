@@ -109,8 +109,15 @@
 <div class="modal fade" id="modalHistorial" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header"><h5>Historial y Bloqueos</h5><button type="button" class="close" data-dismiss="modal">&times;</button></div>
-            <div class="modal-body"><ul class="list-group list-group-flush" id="listaHistorial"></ul></div>
+            <div class="modal-header">
+                <h5>Historial y Bloqueos</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="max-height: 220px; overflow-y: auto; display: block;">
+                    <ul class="list-group list-group-flush" id="listaHistorial"></ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
