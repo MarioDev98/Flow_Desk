@@ -26,6 +26,7 @@
         <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Dependencia</h5><h2 id="dependencia">0</h2></div></div></div>
         <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Proceso</h5><h2 id="proceso">0</h2></div></div></div>
         <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Finalizadas</h5><h2 id="finalizadas">0</h2></div></div></div>
+        <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Autor:</h5><h2>MARIO M. </h2></div></div></div>
     </div>
 
     <div class="card shadow-sm mb-4">
@@ -131,6 +132,10 @@
                     <input type="hidden" name="id" id="editarIdTarea">
                     <div class="form-group"><label>Título</label><input type="text" name="titulo" id="editarTitulo" class="form-control" required></div>
                     <div class="form-group"><label>Descripción</label><textarea name="descripcion" id="editarDescripcion" class="form-control"></textarea></div>
+                    <div class="form-group">
+                    <label>Hashtags (separados por comas)</label>
+                    <input type="text" name="hashtags" id="editarHashtags" class="form-control" placeholder="ej: dev, infra, urgente">
+                    </div>
                     <div class="form-group">
                         <label>Prioridad</label>
                         <select name="prioridad" id="editarPrioridad" class="form-control">

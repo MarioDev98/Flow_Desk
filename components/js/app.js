@@ -129,9 +129,14 @@ function crearTarjeta(tarea) {
     let botonEditar = "";
     if (tarea.estatus === "Nuevo") {
         botonEditar = `
-            <button class="btn btn-sm btn-outline-warning" onclick="editarTarea(${tarea.id})" title="Editar tarea">
-                <i class='bx bx-edit'></i>
-            </button>
+            <div class="d-flex gap-1 ml-1">
+                <button class="btn btn-sm btn-outline-warning mr-1" onclick="editarTarea(${tarea.id})" title="Editar tarea">
+                    <i class='bx bx-edit'></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="eliminarTarea(${tarea.id})" title="Eliminar tarea">
+                    <i class='bx bx-trash'></i>
+                </button>
+            </div>
         `;
     }
 
@@ -155,7 +160,7 @@ function crearTarjeta(tarea) {
                     <button class="btn btn-sm btn-outline-primary btn-block mr-1" onclick="abrirModalMover(${tarea.id}, '${tarea.estatus}')">
                         <i class='bx bx-transfer'></i> Mover
                     </button>
-                    ${botonEditar}
+                    ${botonEditar} 
                 </div>
             </div>
         </div>
@@ -198,6 +203,7 @@ function ejecutarMovimiento() {
 
 // Carga los datos actuales en el modal de edición
 function editarTarea(id) {
+    
     const tarea = listaTareasGlobal.find(t => t.id == id);
     if(tarea) {
         $("#editarIdTarea").val(tarea.id);
@@ -205,6 +211,7 @@ function editarTarea(id) {
         $("#editarDescripcion").val(tarea.descripcion);
         $("#editarPrioridad").val(tarea.prioridad);
         $("#editarFechaLimite").val(tarea.fecha_limite);
+        $("#editarHashtags").val(tarea.tags ? tarea.tags : "");
         $("#modalEditar").modal("show");
     }
 }
@@ -268,4 +275,25 @@ function verHistorial(idTarea) {
     }).fail(function() {
         $("#listaHistorial").html("<li class='list-group-item text-danger'>Error al conectar con el servidor de logs.</li>");
     });
+}
+
+function eliminarTarea(id) {
+    if (confirm("¿Estás seguro de que deseas eliminar esta tarea? Esta acción no se puede deshacer.")) {
+        $.ajax({
+            url: "components/php/eliminar_tarea.php",
+            type: "POST",
+            data: { id: id },
+            dataType: "json",
+            success: function(res) {
+                if (res.success) {
+                    cargarTareas(); // Refresca el tablero Kanban automáticamente
+                } else {
+                    alert(res.mensaje);
+                }
+            },
+            error: function() {
+                alert("Error en el servidor al intentar eliminar la tarea.");
+            }
+        });
+    }
 }
