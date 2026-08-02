@@ -53,7 +53,7 @@ body {
     background-color: var(--bg-column);
     padding: 15px;
     border-radius: var(--border-radius);
-    min-height: 70vh;
+    min-height: 66vh;
     margin-bottom: 20px;
 }
 .kanban-column h4 {
@@ -99,7 +99,7 @@ hr {
 
 /* Altura máxima para permitir 3 tarjetas aproximadamente y activar scroll */
 .kanban-column > div[id$="Container"] {
-    max-height: 520px; 
+    max-height: 600px; 
     overflow-y: auto;
     padding-right: 5px;
 }

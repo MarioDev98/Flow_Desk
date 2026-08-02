@@ -10,7 +10,7 @@ $sql = $conexion->query("
     LEFT JOIN tarea_hashtag th ON t.id = th.tarea_id
     LEFT JOIN hashtags h ON th.hashtag_id = h.id
     GROUP BY t.id
-    ORDER BY t.fecha_creacion DESC
+    ORDER BY t.fecha_creacion ASC
 ");
 
 echo json_encode($sql->fetchAll(PDO::FETCH_ASSOC));
