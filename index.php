@@ -20,14 +20,32 @@
 </nav>
 
 <div class="container-fluid mt-4">
-    <div class="row mb-4">
-        <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Total</h5><h2 id="total">0</h2></div></div></div>
+        <div class="row mb-4">
+            <div class="col-md-2">
+                <a href="historial.php" class="text-decoration-none text-dark">
+                    <div class="card dashboard-card" style="cursor: pointer;">
+                        <div class="card-body">
+                            <h5>Total</h5>
+                            <h2 id="total">0</h2>
+                    </div>
+            </div>
+                </a>
+        </div>
         <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Nuevas</h5><h2 id="nuevo">0</h2></div></div></div>
         <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Dependencia</h5><h2 id="dependencia">0</h2></div></div></div>
         <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Proceso</h5><h2 id="proceso">0</h2></div></div></div>
         <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Finalizadas</h5><h2 id="finalizadas">0</h2></div></div></div>
-        <div class="col-md-2"><div class="card dashboard-card"><div class="card-body"><h5>Autor:</h5><h2>MARIO M. </h2></div></div></div>
+   <div class="col-md-2">
+        <a href="productividad.php" class="text-decoration-none text-dark">
+            <div class="card dashboard-card" style="cursor: pointer;">
+                <div class="card-body">
+                    <h5>Autor:</h5>
+                    <h2>MARIO M.</h2>
+                </div>
+            </div>
+        </a>
     </div>
+</div>
 
     <div class="card shadow-sm mb-4">
         <div class="card-body">
